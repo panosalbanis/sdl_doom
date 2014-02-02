@@ -4,14 +4,14 @@
 #
 # $Log:$
 #
-CC=  gcc # gcc or g++
+CC=gcc # gcc or g++
 
-CFLAGS=-m32 -g -Wall -DNORMALUNIX -DLINUX -DSDL # -DUSEASM 
-LDFLAGS=-L/usr/lib/i386-linux-gnu/
-LIBS=-lSDL #-lnsl -lm
+CFLAGS=-Wall
+LDFLAGS=
+LIBS=-lSDL
 
 # subdirectory for objects
-O=linux
+O=build
 
 # not too sophisticated dependency
 OBJS=				\
@@ -77,15 +77,15 @@ OBJS=				\
 		$(O)/info.o				\
 		$(O)/sounds.o
 
-all:	 $(O)/sdl_doom
+all:	 $(O)/doom
 
 clean:
 	rm -f *.o *~ *.flc
-	rm -f linux/*
+	rm -f $(O)/*
 
-$(O)/sdl_doom:	$(OBJS) $(O)/i_main.o
+$(O)/doom:	$(OBJS) $(O)/i_main.o
 	$(CC) $(CFLAGS) $(LDFLAGS) $(OBJS) $(O)/i_main.o \
-	-o $(O)/sdl_doom $(LIBS)
+	-o $(O)/doom $(LIBS)
 
 $(O)/%.o:	%.c
 	$(CC) $(CFLAGS) -c $< -o $@
