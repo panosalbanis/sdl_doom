@@ -8,7 +8,7 @@ CC=gcc # gcc or g++
 
 CFLAGS=-Wall
 LDFLAGS=
-LIBS=-lSDL
+LIBS=-lSDL -lm
 
 # subdirectory for objects
 O=build
